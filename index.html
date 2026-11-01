@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#102a43">
+  <meta name="description" content="Help Dave flap past towering stacks of sausage rolls. A ridiculous one-tap mobile game.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Dave Flaps">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" type="image/png" href="./icon-192.png">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="preload" as="image" href="./assets/dave-wings.webp">
+  <link rel="preload" as="image" href="./assets/sausage-roll.webp">
+  <link rel="stylesheet" href="./style.css">
+  <title>Dave Flaps — Sausage Roll Run</title>
+</head>
+<body>
+  <main class="app" id="app" aria-label="Dave Flaps game">
+    <canvas id="game" aria-label="Game field. Tap or press space to flap through sausage-roll towers."></canvas>
+
+    <div class="hud" id="hud" hidden>
+      <div class="hud-left"><span class="hud-caption">BEST</span><strong id="hudBest">0</strong></div>
+      <div class="hud-score" id="hudScore" aria-live="off">0</div>
+      <div class="hud-actions">
+        <button id="soundButton" class="icon-button" aria-label="Mute sound" aria-pressed="true" title="Toggle sound">
+          <svg class="speaker" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path class="sound-wave" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+        </button>
+        <button id="pauseButton" class="icon-button" aria-label="Pause game" title="Pause game"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="4" width="5" height="16" rx="1.4"/><rect x="14" y="4" width="5" height="16" rx="1.4"/></svg></button>
+      </div>
+    </div>
+
+    <section id="readyScreen" class="screen intro" aria-label="Start screen">
+      <div class="intro-top">
+        <div class="mini-tag"><span class="tag-dot"></span> THE MOST IMPORTANT FLIGHT OF HIS LIFE</div>
+        <h1><span>DAVE</span><span>FLAPS!</span></h1>
+        <div class="intro-subtitle">SAUSAGE ROLL RUN</div>
+      </div>
+      <div class="hero-wrap"><div class="hero-halo"></div><img src="./assets/dave-wings.webp" width="900" height="450" class="hero-dave" alt="Dave's smiling face with big fluffy wings"></div>
+      <div class="intro-bottom">
+        <div class="speech-bubble">One man. Two wings. <strong>Endless pastry.</strong></div>
+        <button class="primary-button" id="playButton"><span class="play-triangle" aria-hidden="true"></span> LET'S FLAP <span aria-hidden="true">→</span></button>
+        <div class="how-to"><span class="tap-symbol">☝</span> TAP ANYWHERE TO FLAP <span class="separator">·</span> AVOID THE ROLLS</div>
+        <div class="intro-record">🏆 YOUR BEST: <strong id="introBest">0</strong></div>
+      </div>
+    </section>
+
+    <section id="pauseScreen" class="screen dim-screen" hidden aria-label="Paused">
+      <div class="result-card">
+        <div class="result-emoji" aria-hidden="true">⏸</div>
+        <h2>PASTRY BREAK</h2>
+        <p>Dave's catching his breath.</p>
+        <button class="primary-button" id="resumeButton">KEEP FLAPPING <span aria-hidden="true">→</span></button>
+        <button class="secondary-button" id="pauseHomeButton">BACK TO MENU</button>
+      </div>
+    </section>
+
+    <section id="overScreen" class="screen dim-screen" hidden aria-label="Game over">
+      <div class="result-card">
+        <div class="result-pill" id="resultPill">A CRUMBY LANDING</div>
+        <h2>OH, CRUMBS!</h2>
+        <p id="gameOverMessage">Dave's been sausage-rolled.</p>
+        <div class="result-scores">
+          <div><span>SCORE</span><strong id="finalScore">0</strong></div>
+          <div class="score-divider"></div>
+          <div><span>PERSONAL BEST</span><strong id="finalBest">0</strong></div>
+        </div>
+        <button class="primary-button" id="replayButton"><span aria-hidden="true">↻</span> GO AGAIN!</button>
+        <button class="secondary-button" id="homeButton">BACK TO MENU</button>
+      </div>
+    </section>
+
+    <div class="footer-prompt" id="footerPrompt" hidden>TAP TO FLAP <span>↑</span></div>
+  </main>
+  <script src="./game.js" defer></script>
+</body>
+</html>
